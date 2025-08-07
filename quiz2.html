@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>テンキー対応クイズ</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    input, select, button {
+      font-size: 1.2em;
+      margin-top: 10px;
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>テンキー対応！学習クイズ</h1>
+
+  <div class="question">
+    <label for="numberInput">Q1. 6 × 7 は？</label>
+    <input type="tel" inputmode="numeric" pattern="[0-9]*" id="numberInput" placeholder="数字を入力（テンキー対応）">
+  </div>
+
+  <div class="question">
+    <label for="selectInput">Q2. フランスの首都は？</label>
+    <select id="selectInput">
+      <option value="">選んでください</option>
+      <option value="paris">パリ</option>
+      <option value="london">ロンドン</option>
+      <option value="rome">ローマ</option>
+    </select>
+  </div>
+
+  <button onclick="checkAnswers()">答え合わせ</button>
+
+  <div class="result" id="resultArea"></div>
+
+  <script>
+    function checkAnswers() {
+      const numAnswer = document.getElementById("numberInput").value.trim();
+      const selectAnswer = document.getElementById("selectInput").value;
+
+      let resultText = "";
+
+      if (numAnswer === "42") {
+        resultText += "Q1：正解！🎉<br>";
+      } else {
+        resultText += "Q1：不正解 😢（正解は42）<br>";
+      }
+
+      if (selectAnswer === "paris") {
+        resultText += "Q2：正解！🎉";
+      } else {
+        resultText += "Q2：不正解 😢（正解はパリ）";
+      }
+
+      document.getElementById("resultArea").innerHTML = resultText;
+    }
+  </script>
+</body>
+</html>
